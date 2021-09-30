@@ -22,7 +22,9 @@ class MainActivity : ComponentActivity() {
                     }
                 }
                 composable("tasks/new") {
-                    NewTaskScreen(vmf)
+                    NewTaskScreen(vmf) {
+                        navController.navigate("tasks")
+                    }
                 }
             }
 
