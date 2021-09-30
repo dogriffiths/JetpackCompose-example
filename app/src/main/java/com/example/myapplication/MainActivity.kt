@@ -10,6 +10,8 @@ class MainActivity : ComponentActivity() {
         val taskDao = TaskDatabase.getInstance(this).taskDao
         val vmf = MyViewModelFactory(taskDao)
         setContent {
+            val navController = rememberNavController()
+
             TasksScreen(vmf)
         }
     }
