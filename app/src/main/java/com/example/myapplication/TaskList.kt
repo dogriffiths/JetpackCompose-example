@@ -13,7 +13,7 @@ fun TaskList(tasks: List<Task>) {
         items(tasks.size) {
             val task = tasks[it]
             Row(
-                modifier = Modifier.padding(12.dp),
+                modifier = Modifier.fillMaxWidth().padding(12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(task.name)
