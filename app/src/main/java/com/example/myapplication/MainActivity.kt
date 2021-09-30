@@ -4,27 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Button
-import androidx.compose.material.Checkbox
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var task by remember { mutableStateOf(Task("", false))}
+            var tasks by remember { mutableStateOf(mutableListOf<Task>())}
             Column {
                 TaskEditor(Task(name = "", complete = false)) {
-                    task = it
+                    val newTasks = mutableListOf<Task>()
+                    newTasks.add(it)
+                    newTasks.addAll(tasks)
+                    tasks = newTasks
                 }
-                Text("Task name: ${task.name}")
+//                Text("Task name: ${task.name}")
+                Column {
+                    for (task in tasks) {
+                        Text(task.name)
+                    }
+                }
             }
         }
     }
@@ -32,41 +35,3 @@ class MainActivity : ComponentActivity() {
 
 data class Task(var name: String, var complete: Boolean)
 
-@Composable
-fun TaskEditor(task: Task, onTaskChanged: (Task) -> Unit) {
-    var name by rememberSaveable(task.name) { mutableStateOf(task.name) }
-    var complete by rememberSaveable(task.complete) { mutableStateOf(task.complete) }
-    Column {
-        TextField(
-            value = name,
-            onValueChange = {
-                name = it
-            },
-            modifier = Modifier.fillMaxWidth(),
-        )
-        Row {
-            Checkbox(
-                checked = complete,
-                onCheckedChange = {
-                    complete = it
-                },
-            )
-            Text("Complete?")
-        }
-        Button(onClick = {
-            onTaskChanged(task.copy(name = name, complete = complete))
-            name = ""
-            complete = false
-        }) {
-            Text("SAVE")
-        }
-    }
-}
-
-@Preview
-@Composable
-fun PreviewTextEditor() {
-    TaskEditor(Task(name = "Buy bread", complete = true)) {
-
-    }
-}
