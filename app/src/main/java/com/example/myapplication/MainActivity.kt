@@ -18,15 +18,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TextEditor()
+            TextEditor("Buy bread", true)
         }
     }
 }
 
 @Composable
-fun TextEditor() {
-    var name by rememberSaveable { mutableStateOf("Buy milk") }
-    var complete by rememberSaveable { mutableStateOf(true) }
+fun TextEditor(defaultName: String, defaultComplete: Boolean) {
+    var name by rememberSaveable { mutableStateOf(defaultName) }
+    var complete by rememberSaveable { mutableStateOf(defaultComplete) }
     Column {
         TextField(
             value = name,
@@ -50,5 +50,5 @@ fun TextEditor() {
 @Preview
 @Composable
 fun PreviewTextEditor() {
-    TextEditor()
+    TextEditor("Buy bread", true)
 }
