@@ -10,6 +10,7 @@ import androidx.compose.material.Checkbox
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -24,8 +25,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TextEditor() {
-    var name by remember { mutableStateOf("Buy milk") }
-    var complete by remember { mutableStateOf(true) }
+    var name by rememberSaveable { mutableStateOf("Buy milk") }
+    var complete by rememberSaveable { mutableStateOf(true) }
     Column {
         TextField(
             value = name,
