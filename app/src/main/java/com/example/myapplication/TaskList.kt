@@ -7,8 +7,7 @@ import androidx.compose.runtime.Composable
 fun TaskList(tasks: List<Task>) {
     LazyColumn {
         items(tasks.size) {
-            val task = tasks[it]
-            TaskItem(task)
+            TaskItem(tasks[it])
         }
     }
 }
