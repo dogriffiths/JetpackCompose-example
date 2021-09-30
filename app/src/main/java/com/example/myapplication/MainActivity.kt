@@ -52,7 +52,7 @@ fun TaskEditor(task: Task, onTaskChanged: (Task) -> Unit) {
         Button(onClick = {
 
         }) {
-            Text("Save")
+            Text("SAVE")
         }
     }
 }
