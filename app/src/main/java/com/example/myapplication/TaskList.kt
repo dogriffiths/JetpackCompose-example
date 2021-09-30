@@ -1,13 +1,11 @@
 package com.example.myapplication
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun TaskList(tasks: List<Task>) {
@@ -15,7 +13,7 @@ fun TaskList(tasks: List<Task>) {
         items(tasks.size) {
             val task = tasks[it]
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.padding(12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(task.name)
