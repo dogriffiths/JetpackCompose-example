@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TextEditor() {
     Text("Buy milk")
+    Text("Complete!")
 }
 
 @Preview
