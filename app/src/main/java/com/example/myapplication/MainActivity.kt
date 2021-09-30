@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val taskDao = TaskDao()
+        val taskDao = TaskDatabase.getInstance(this).taskDao
         val vmf = MyViewModelFactory(taskDao)
         setContent {
             TasksScreen(vmf)

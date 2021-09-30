@@ -2,11 +2,15 @@ package com.example.myapplication
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class TasksScreenViewModel(val taskDao: TaskDao): ViewModel() {
     fun addTask(task: Task) {
-        taskDao.insert(task)
+        viewModelScope.launch {
+            taskDao.insert(task)
+        }
     }
 
     fun getTasks() = taskDao.getAll()
