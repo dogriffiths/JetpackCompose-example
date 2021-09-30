@@ -19,8 +19,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TaskEditor(Task(name = "Buy bread", complete = true)) {
-
+            var task by remember { mutableStateOf(Task("", false))}
+            Column {
+                TaskEditor(Task(name = "", complete = false)) {
+                    task = it
+                }
+                Text("Task name: ${task.name}")
             }
         }
     }
@@ -50,7 +54,7 @@ fun TaskEditor(task: Task, onTaskChanged: (Task) -> Unit) {
             Text("Complete?")
         }
         Button(onClick = {
-
+            onTaskChanged(task.copy(name = name, complete = complete))
         }) {
             Text("SAVE")
         }
