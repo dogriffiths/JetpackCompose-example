@@ -14,7 +14,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Text("Buy milk")
+            TextEditor()
         }
     }
+}
+
+@Composable
+fun TextEditor() {
+    Text("Buy milk")
 }
