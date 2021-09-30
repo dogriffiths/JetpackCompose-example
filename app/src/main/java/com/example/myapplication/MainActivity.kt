@@ -55,6 +55,8 @@ fun TaskEditor(task: Task, onTaskChanged: (Task) -> Unit) {
         }
         Button(onClick = {
             onTaskChanged(task.copy(name = name, complete = complete))
+            name = ""
+            complete = false
         }) {
             Text("SAVE")
         }
