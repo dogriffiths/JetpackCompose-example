@@ -64,7 +64,7 @@ fun EditTaskScreen(vmf: MyViewModelFactory, taskId: Long, onTaskSaved: () -> Uni
 @Composable
 fun MyScaffold(title: String, content: @Composable () -> Unit) {
     Scaffold(
-        topBar = {TopAppBar(title = {Text(title)})}
+        topBar = {TopAppBar(title = {Text(title)})},
     ) {
         content()
     }
