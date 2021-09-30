@@ -23,10 +23,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TextEditor() {
+    var name = "Buy milk"
     Column {
         TextField(
-            value = "Buy milk",
-            onValueChange = {},
+            value = name,
+            onValueChange = {
+                name = it
+            },
             modifier = Modifier.fillMaxWidth(),
         )
         Row {
