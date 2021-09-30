@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +16,7 @@ fun TaskList(tasks: List<Task>) {
             val task = tasks[it]
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(task.name)
                 Text(if (task.complete) "✓" else "")
