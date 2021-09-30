@@ -32,6 +32,7 @@ fun TextEditor() {
             checked = true,
             onCheckedChange = {},
         )
+        Text("Complete?")
     }
 }
 
