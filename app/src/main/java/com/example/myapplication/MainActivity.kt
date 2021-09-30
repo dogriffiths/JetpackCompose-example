@@ -4,34 +4,37 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
+
+class TaskDao {
+    private var _tasks: List<Task> = mutableListOf(Task(name = "Buy fish", complete = true))
+
+    fun insert(task: Task) {
+        val newTasks = mutableListOf<Task>()
+        newTasks.add(task)
+        newTasks.addAll(_tasks)
+        _tasks = newTasks
+    }
+
+    fun getAll() = _tasks
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val taskDao = TaskDao()
         setContent {
-            var tasks by remember { mutableStateOf(mutableListOf<Task>())}
+            var tasks = taskDao.getAll()
             Column {
                 TaskEditor(Task(name = "", complete = false)) {
-                    val newTasks = mutableListOf<Task>()
-                    newTasks.add(it)
-                    newTasks.addAll(tasks)
-                    tasks = newTasks
+                    taskDao.insert(it)
                 }
-//                Text("Task name: ${task.name}")
-                Column {
-                    for (task in tasks) {
-                        Text(task.name)
-                    }
-                }
+                TaskList(tasks)
             }
         }
     }
 }
+
 
 data class Task(var name: String, var complete: Boolean)
 
