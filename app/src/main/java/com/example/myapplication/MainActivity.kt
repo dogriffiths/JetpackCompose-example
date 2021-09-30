@@ -4,16 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.lifecycle.MutableLiveData
 
 class TaskDao {
-    private var _tasks: List<Task> = mutableListOf(Task(name = "Buy fish", complete = true))
+    private var _tasks: MutableLiveData<List<Task>> = MutableLiveData(mutableListOf(Task(name = "Buy fish", complete = true)))
 
     fun insert(task: Task) {
         val newTasks = mutableListOf<Task>()
         newTasks.add(task)
-        newTasks.addAll(_tasks)
-        _tasks = newTasks
+        newTasks.addAll(_tasks.value!!)
+        _tasks.postValue(newTasks)
     }
 
     fun getAll() = _tasks
@@ -24,12 +26,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val taskDao = TaskDao()
         setContent {
-            var tasks = taskDao.getAll()
+            val tasks by taskDao.getAll().observeAsState()
             Column {
                 TaskEditor(Task(name = "", complete = false)) {
                     taskDao.insert(it)
                 }
-                TaskList(tasks)
+                tasks?.let {
+                    TaskList(it)
+                }
             }
         }
     }
