@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Button
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -18,7 +19,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TextEditor(Task(name = "Buy bread", complete = true))
+            TaskEditor(Task(name = "Buy bread", complete = true)) {
+
+            }
         }
     }
 }
@@ -26,9 +29,9 @@ class MainActivity : ComponentActivity() {
 data class Task(var name: String, var complete: Boolean)
 
 @Composable
-fun TextEditor(task: Task) {
-    var name by rememberSaveable { mutableStateOf(task.name) }
-    var complete by rememberSaveable { mutableStateOf(task.complete) }
+fun TaskEditor(task: Task, onTaskChanged: (Task) -> Unit) {
+    var name by rememberSaveable(task.name) { mutableStateOf(task.name) }
+    var complete by rememberSaveable(task.complete) { mutableStateOf(task.complete) }
     Column {
         TextField(
             value = name,
@@ -46,11 +49,18 @@ fun TextEditor(task: Task) {
             )
             Text("Complete?")
         }
+        Button(onClick = {
+
+        }) {
+            Text("Save")
+        }
     }
 }
 
 @Preview
 @Composable
 fun PreviewTextEditor() {
-    TextEditor(Task(name = "Buy bread", complete = true))
+    TaskEditor(Task(name = "Buy bread", complete = true)) {
+
+    }
 }
