@@ -10,6 +10,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -25,12 +27,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TextEditor() {
-    var name = remember { mutableStateOf("Buy milk")}
+    var name by remember { mutableStateOf("Buy milk")}
     Column {
         TextField(
-            value = name.value,
+            value = name,
             onValueChange = {
-                name.value = it
+                name = it
             },
             modifier = Modifier.fillMaxWidth(),
         )
