@@ -19,6 +19,9 @@ class MainActivity : ComponentActivity() {
                 composable("tasks") {
                     TasksScreen(vmf)
                 }
+                composable("tasks/new") {
+                    NewTaskScreen(vmf)
+                }
             }
 
         }
