@@ -1,29 +1,26 @@
 package com.example.myapplication
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun TasksScreen(vmf: MyViewModelFactory, onTaskClicked: (Task) -> Unit, onAddTask: () -> Unit) {
     val vm: TasksScreenViewModel = viewModel(factory = vmf)
     val tasks = vm.getTasks().observeAsState()
-    MyScaffold("Tasks!") {
-        Column {
-            Button(
-                onClick = onAddTask
-            ) {
-                Text("ADD TASK")
-            }
-            tasks.value?.let {
-                TaskList(it) {
-                    onTaskClicked(it)
-                }
+    MyScaffold(
+        title = "Tasks!",
+        fabIcon = Icons.Filled.Add,
+        onFabClick = onAddTask
+    ) {
+        tasks.value?.let {
+            TaskList(it) {
+                onTaskClicked(it)
             }
         }
     }
@@ -62,10 +59,19 @@ fun EditTaskScreen(vmf: MyViewModelFactory, taskId: Long, onTaskAdded: () -> Uni
 @Composable
 fun MyScaffold(
     title: String,
+    fabIcon: ImageVector? = null,
+    onFabClick: () -> Unit = {},
     content: @Composable () -> Unit
 ) {
     Scaffold(
-        topBar = {TopAppBar(title = {Text(title)})}
+        topBar = { TopAppBar(title = { Text(title) }) },
+        floatingActionButton = {
+            fabIcon?.let {
+                FloatingActionButton(onClick = onFabClick) {
+                    Icon(it, "Fab icon")
+                }
+            }
+        }
     ) {
         content()
     }
