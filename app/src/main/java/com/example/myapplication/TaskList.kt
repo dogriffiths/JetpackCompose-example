@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,7 +19,10 @@ fun TaskList(tasks: List<Task>) {
 
 @Composable
 fun TaskItem(task: Task) {
-    Row(modifier = Modifier.fillMaxWidth()) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
         Text(task.name)
         Text(if (task.complete) "✓" else " ")
     }
