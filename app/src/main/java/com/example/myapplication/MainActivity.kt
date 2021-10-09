@@ -20,16 +20,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TaskEditor()
+            TaskEditor(Task(name = "Buy bread", complete = true), onTaskChange = {})
         }
     }
 }
 
+data class Task(var name: String, var complete: Boolean)
 
 @Composable
-fun TaskEditor() {
-    var name by rememberSaveable { mutableStateOf("Buy milk!!!!!") }
-    var complete by rememberSaveable { mutableStateOf(true) }
+fun TaskEditor(task: Task, onTaskChange: (Task) -> Unit) {
+    var name by rememberSaveable(task.name) { mutableStateOf(task.name) }
+    var complete by rememberSaveable(task.complete) { mutableStateOf(task.complete) }
     Column {
         TextField(
             value = name,
@@ -41,6 +42,11 @@ fun TaskEditor() {
         Row {
             Checkbox(checked = complete, onCheckedChange = {complete = it})
             Text("Complete?")
+        }
+        Button(
+           onClick = {onTaskChange(task.copy(name = name, complete = complete))}
+        ) {
+            Text("Save")
         }
     }
 }
