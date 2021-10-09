@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +25,9 @@ class MainActivity : ComponentActivity() {
 fun TaskEditor() {
     Column {
         TextField(value = "Buy milk!!!!!", onValueChange={})
-        Checkbox(checked = true, onCheckedChange = {})
-        Text("Complete?")
+        Row {
+            Checkbox(checked = true, onCheckedChange = {})
+            Text("Complete?")
+        }
     }
 }
