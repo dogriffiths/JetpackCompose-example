@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 
 class MainActivity : ComponentActivity() {
@@ -27,8 +28,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TaskEditor() {
-    var name by remember { mutableStateOf("Buy milk!!!!!") }
-    var complete by remember { mutableStateOf(true) }
+    var name by rememberSaveable { mutableStateOf("Buy milk!!!!!") }
+    var complete by rememberSaveable { mutableStateOf(true) }
     Column {
         TextField(
             value = name,
