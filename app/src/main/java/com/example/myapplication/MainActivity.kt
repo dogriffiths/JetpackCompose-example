@@ -16,7 +16,12 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "tasks") {
                 composable("tasks") {
-                    TasksScreen(vmf)
+                    TasksScreen(vmf) {
+                        navController.navigate("tasks/new")
+                    }
+                }
+                composable("tasks/new") {
+                    NewTaskScreen(vmf)
                 }
             }
         }
