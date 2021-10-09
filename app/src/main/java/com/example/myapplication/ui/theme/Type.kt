@@ -11,7 +11,7 @@ val Typography = Typography(
     body1 = TextStyle(
         fontFamily = FontFamily.Cursive,
         fontWeight = FontWeight.ExtraBold,
-        fontSize = 36.sp
+        fontSize = 24.sp
     ),
     button = TextStyle(
         fontFamily = FontFamily.Monospace,

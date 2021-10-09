@@ -28,7 +28,9 @@ fun TaskList(tasks: List<Task>, onTaskClicked: (Task) -> Unit) {
 @Composable
 fun TaskItem(task: Task, onClick: () -> Unit) {
     Card(
-        modifier = Modifier.clickable { onClick() },
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable { onClick() },
         elevation = 10.dp,
         shape = MaterialTheme.shapes.large,
     ) {
