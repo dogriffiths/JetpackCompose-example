@@ -12,13 +12,13 @@ val Typography = Typography(
         fontFamily = FontFamily.Cursive,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 36.sp
-    )
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
     ),
+    button = TextStyle(
+        fontFamily = FontFamily.Monospace,
+        fontWeight = FontWeight.W500,
+        fontSize = 28.sp
+    ),
+    /* Other default text styles to override
     caption = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
