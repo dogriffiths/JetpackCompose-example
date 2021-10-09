@@ -22,5 +22,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TaskEditor() {
-    Text("Buy milk!")
+    Text("Buy milk!!!!!")
+    Text("Complete!")
 }
