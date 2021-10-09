@@ -26,14 +26,18 @@ fun TaskList(tasks: List<Task>, onTaskClicked: (Task) -> Unit) {
 
 @Composable
 fun TaskItem(task: Task, onClick: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .padding(16.dp)
-            .clickable { onClick() }
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+    Card(
+
     ) {
-        Text(task.name)
-        Text(if (task.complete) "✓" else " ")
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .clickable { onClick() }
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text(task.name)
+            Text(if (task.complete) "✓" else " ")
+        }
     }
 }
