@@ -32,11 +32,13 @@ fun TasksScreen(vmf: MyViewModelFactory, onTaskClicked: (Task) -> Unit, onAddTas
 @Composable
 fun NewTaskScreen(vmf: MyViewModelFactory, onTaskAdded: () -> Unit) {
     val vm: NewTaskScreenViewModel = viewModel(factory = vmf)
-    Column {
-        TaskEditor(Task(name = "", complete = false), onTaskChange = {
-            vm.addTask(it)
-            onTaskAdded()
-        })
+    MyScaffold(title = "New task") {
+        Column {
+            TaskEditor(Task(name = "", complete = false), onTaskChange = {
+                vm.addTask(it)
+                onTaskAdded()
+            })
+        }
     }
 }
 
@@ -45,12 +47,14 @@ fun NewTaskScreen(vmf: MyViewModelFactory, onTaskAdded: () -> Unit) {
 fun EditTaskScreen(vmf: MyViewModelFactory, taskId: Long, onTaskAdded: () -> Unit) {
     val vm: EditTaskScreenViewModel = viewModel(factory = vmf)
     val task = vm.getTask(taskId).observeAsState()
-    Column {
-        task.value?.let {
-            TaskEditor(it, onTaskChange = {
-                vm.saveTask(it)
-                onTaskAdded()
-            })
+    MyScaffold("Edit task") {
+        Column {
+            task.value?.let {
+                TaskEditor(it, onTaskChange = {
+                    vm.saveTask(it)
+                    onTaskAdded()
+                })
+            }
         }
     }
 }
