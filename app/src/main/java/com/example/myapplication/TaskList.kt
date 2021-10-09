@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,19 +26,14 @@ fun TaskList(tasks: List<Task>, onTaskClicked: (Task) -> Unit) {
 
 @Composable
 fun TaskItem(task: Task, onClick: () -> Unit) {
-    Card(
-        shape = MaterialTheme.shapes.large,
-        elevation = 10.dp
+    Row(
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable { onClick() }
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .clickable { onClick() }
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(task.name)
-            Text(if (task.complete) "✓" else " ")
-        }
+        Text(task.name)
+        Text(if (task.complete) "✓" else " ")
     }
 }

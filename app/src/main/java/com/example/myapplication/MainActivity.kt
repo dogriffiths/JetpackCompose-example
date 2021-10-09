@@ -3,6 +3,9 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,7 +13,11 @@ class MainActivity : ComponentActivity() {
         val taskDao = TaskDatabase.getInstance(applicationContext).taskDao
         val vmf = MyViewModelFactory(taskDao)
         setContent {
-            MainNavigation(vmf)
+            MyApplicationTheme() {
+                Surface(color = MaterialTheme.colors.background) {
+                    MainNavigation(vmf)
+                }
+            }
         }
     }
 }
