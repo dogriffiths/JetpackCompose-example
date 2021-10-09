@@ -25,5 +25,6 @@ fun TaskEditor() {
     Column {
         TextField(value = "Buy milk!!!!!", onValueChange={})
         Checkbox(checked = true, onCheckedChange = {})
+        Text("Complete?")
     }
 }
