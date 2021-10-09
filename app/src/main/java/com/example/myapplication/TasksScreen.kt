@@ -2,7 +2,9 @@ package com.example.myapplication
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -11,15 +13,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun TasksScreen(vmf: MyViewModelFactory, onTaskClicked: (Task) -> Unit, onAddTask: () -> Unit) {
     val vm: TasksScreenViewModel = viewModel(factory = vmf)
     val tasks = vm.getTasks().observeAsState()
-    Column {
-        Button(
-            onClick = onAddTask
-        ) {
-            Text("ADD TASK")
-        }
-        tasks.value?.let {
-            TaskList(it) {
-                onTaskClicked(it)
+    MyScaffold("Tasks!") {
+        Column {
+            Button(
+                onClick = onAddTask
+            ) {
+                Text("ADD TASK")
+            }
+            tasks.value?.let {
+                TaskList(it) {
+                    onTaskClicked(it)
+                }
             }
         }
     }
@@ -48,5 +52,17 @@ fun EditTaskScreen(vmf: MyViewModelFactory, taskId: Long, onTaskAdded: () -> Uni
                 onTaskAdded()
             })
         }
+    }
+}
+
+@Composable
+fun MyScaffold(
+    title: String,
+    content: @Composable () -> Unit
+) {
+    Scaffold(
+        topBar = {TopAppBar(title = {Text(title)})}
+    ) {
+        content()
     }
 }
