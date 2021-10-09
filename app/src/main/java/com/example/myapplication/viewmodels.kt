@@ -19,6 +19,16 @@ class NewTaskScreenViewModel(val taskDao: TaskDao): ViewModel() {
     }
 }
 
+class EditTaskScreenViewModel(val taskDao: TaskDao): ViewModel() {
+    fun saveTask(task: Task) {
+        viewModelScope.launch {
+            taskDao.update(task)
+        }
+    }
+
+    fun getTask(taskId: Long) = taskDao.get(taskId)
+}
+
 class MyViewModelFactory(val taskDao: TaskDao): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TasksScreenViewModel::class.java)) {
@@ -26,6 +36,9 @@ class MyViewModelFactory(val taskDao: TaskDao): ViewModelProvider.Factory {
         }
         if (modelClass.isAssignableFrom(NewTaskScreenViewModel::class.java)) {
             return NewTaskScreenViewModel(taskDao) as T
+        }
+        if (modelClass.isAssignableFrom(EditTaskScreenViewModel::class.java)) {
+            return EditTaskScreenViewModel(taskDao) as T
         }
         throw IllegalArgumentException("Never heard of that kind of view model")
     }
