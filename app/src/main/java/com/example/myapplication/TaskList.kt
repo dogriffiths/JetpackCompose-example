@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ fun TaskItem(task: Task, onClick: () -> Unit) {
     Card(
         modifier = Modifier.clickable { onClick() },
         elevation = 10.dp,
+        shape = MaterialTheme.shapes.large,
     ) {
         Row(
             modifier = Modifier
