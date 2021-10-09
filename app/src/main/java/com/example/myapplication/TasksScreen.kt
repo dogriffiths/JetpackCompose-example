@@ -42,9 +42,11 @@ fun EditTaskScreen(vmf: MyViewModelFactory, taskId: Long, onTaskAdded: () -> Uni
     val vm: EditTaskScreenViewModel = viewModel(factory = vmf)
     val task = vm.getTask(taskId).observeAsState()
     Column {
-        TaskEditor(Task(name = "", complete = false), onTaskChange = {
-            vm.saveTask(it)
-            onTaskAdded()
-        })
+        task.value?.let {
+            TaskEditor(it, onTaskChange = {
+                vm.saveTask(it)
+                onTaskAdded()
+            })
+        }
     }
 }
