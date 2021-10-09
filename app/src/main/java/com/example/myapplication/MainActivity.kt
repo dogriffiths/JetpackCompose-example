@@ -4,24 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.MutableLiveData
-
-class TaskDao {
-    private var _tasks: MutableLiveData<List<Task>> = MutableLiveData(mutableListOf(Task(name = "Buy car", complete = true)))
-
-    fun insert(task: Task) {
-        val newTasks = mutableListOf<Task>()
-        newTasks.add(task)
-        _tasks.value?.let {
-            newTasks.addAll(it)
-        }
-        _tasks.postValue(newTasks)
-    }
-
-    fun getAll() = _tasks
-}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +23,5 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-data class Task(var name: String, var complete: Boolean)
 
 
