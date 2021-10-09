@@ -27,12 +27,12 @@ fun TaskList(tasks: List<Task>, onTaskClicked: (Task) -> Unit) {
 @Composable
 fun TaskItem(task: Task, onClick: () -> Unit) {
     Card(
+        modifier = Modifier.clickable { onClick() },
         elevation = 10.dp,
     ) {
         Row(
             modifier = Modifier
                 .padding(16.dp)
-                .clickable { onClick() }
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
