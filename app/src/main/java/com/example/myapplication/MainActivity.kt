@@ -46,11 +46,20 @@ fun TaskEditor(task: Task, onTaskChange: (Task) -> Unit) {
             modifier = Modifier.fillMaxWidth()
         )
         Row {
-            Checkbox(checked = complete, onCheckedChange = {complete = it})
+            Checkbox(
+                checked = complete,
+                onCheckedChange = {
+                    complete = it
+                }
+            )
             Text("Complete?")
         }
         Button(
-           onClick = {onTaskChange(task.copy(name = name, complete = complete))}
+           onClick = {
+               onTaskChange(task.copy(name = name, complete = complete))
+               name = ""
+               complete = false
+           }
         ) {
             Text("SAVE")
         }
