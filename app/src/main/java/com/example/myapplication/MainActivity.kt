@@ -26,16 +26,14 @@ class TaskDao {
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val taskDao = TaskDao()
         setContent {
-            var tasks by remember { mutableStateOf(mutableListOf<Task>())}
+            val tasks = taskDao.getAll()
             Column {
                 TaskEditor(
                     task = Task(name = "", complete = false),
                     onTaskChange = {
-                        val newTasks = mutableListOf<Task>()
-                        newTasks.add(it)
-                        newTasks.addAll(tasks)
-                        tasks = newTasks
+                        taskDao.insert(it)
                     }
                 )
                 TaskList(tasks)
