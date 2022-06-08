@@ -28,8 +28,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+data class Task(var name: String, var complete: Boolean)
+
 @Composable
-fun TaskEditor(name: String, complete: Boolean) {
+fun TaskEditor() {
     var name by rememberSaveable { mutableStateOf("Buy milk") }
     var complete by rememberSaveable { mutableStateOf(true) }
     Column {
