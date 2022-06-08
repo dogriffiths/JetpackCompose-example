@@ -10,6 +10,7 @@ class MainActivity : ComponentActivity() {
         val taskDao = TaskDatabase.getInstance(applicationContext).taskDao
         val vmf = MyViewModelFactory(taskDao)
         setContent {
+            
             TasksScreen(vmf)
         }
     }
