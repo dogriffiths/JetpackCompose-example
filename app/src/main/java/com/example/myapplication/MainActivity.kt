@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,8 +20,9 @@ class TaskDao {
     fun insert(task: Task) {
         val newTasks = mutableListOf<Task>()
         newTasks.add(task)
-        newTasks.addAll(_tasks)
-        _tasks = newTasks
+        newTasks.addAll(_tasks.value!!)
+//        _tasks = newTasks
+        _tasks.postValue(newTasks)
     }
 
     fun getAll() = _tasks
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val taskDao = TaskDao()
         setContent {
-            val tasks = taskDao.getAll()
+            val tasks by taskDao.getAll().observeAsState()
             Column {
                 TaskEditor(
                     task = Task(name = "", complete = false),
@@ -39,7 +41,9 @@ class MainActivity : ComponentActivity() {
                         taskDao.insert(it)
                     }
                 )
-                TaskList(tasks)
+                tasks?.let {
+                    TaskList(it)
+                }
             }
         }
     }
