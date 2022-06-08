@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TaskEditor() {
     var name by remember { mutableStateOf("Buy milk") }
+    var complete by remember { mutableStateOf(true) }
     Column {
         TextField(
             modifier = Modifier.fillMaxWidth(),
@@ -42,8 +43,10 @@ fun TaskEditor() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Checkbox(
-                checked = true,
-                onCheckedChange = {},
+                checked = complete,
+                onCheckedChange = {
+                    complete = it
+                },
             )
             Text("Complete?")
         }
