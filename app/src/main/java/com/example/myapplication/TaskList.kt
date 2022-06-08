@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
@@ -8,6 +9,10 @@ import androidx.compose.runtime.Composable
 fun TaskList(tasks: List<Task>) {
     Column {
         for (task in tasks) {
+            Row {
+              Text(task.name)
+                
+            }
             Text("name is ${task.name}")
         }
     }
