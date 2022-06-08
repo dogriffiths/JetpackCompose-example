@@ -26,15 +26,9 @@ fun MainNavigation(vmf: MyViewModelFactory) {
                     navController.navigate("tasks/add")
                 }
             ) {
-                TasksScreen(
-                    vmf = vmf,
-                    onTaskClicked = {
-                        navController.navigate("tasks/${it.id}")
-                    },
-                    onAddTask = {
-                        navController.navigate("tasks/add")
-                    }
-                )
+                TasksScreen(vmf = vmf) {
+                    navController.navigate("tasks/${it.id}")
+                }
             }
         }
         composable("tasks/add") {
