@@ -18,6 +18,9 @@ fun MainNavigation(vmf: MyViewModelFactory) {
         composable("tasks") {
             TasksScreen(
                 vmf = vmf,
+                onTaskClicked = {
+
+                },
                 onAddTask = {
                     navController.navigate("tasks/add")
                 }
@@ -38,7 +41,7 @@ fun MainNavigation(vmf: MyViewModelFactory) {
         ) {
             it.arguments?.let {
                 val taskId = it.get("taskId") as Long
-                EditTaskScreen(vmf, taskId = 17L) {
+                EditTaskScreen(vmf, taskId = taskId) {
                     navController.navigate("tasks")
                 }
             }
