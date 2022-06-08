@@ -20,7 +20,12 @@ class MainActivity : ComponentActivity() {
                 startDestination = "tasks"
             ) {
                 composable("tasks") {
-                    TasksScreen(vmf)
+                    TasksScreen(
+                        vmf = vmf,
+                        onAddTask = {
+                            navController.navigate("tasks/add")
+                        }
+                    )
                 }
                 composable("tasks/add") {
                     AddTaskScreen(vmf)
