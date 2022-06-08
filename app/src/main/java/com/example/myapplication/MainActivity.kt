@@ -23,10 +23,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var task by remember { mutableStateOf(Task(name = "", complete = false))}
             TaskEditor(
-                task = Task(name = "Buy milk", complete = true),
+                task = Task(name = "", complete = false),
                 onTaskChange = {
-
+                    task = it
                 }
             )
         }
