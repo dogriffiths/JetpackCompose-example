@@ -9,18 +9,11 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun TasksScreen(vmf: MyViewModelFactory, onTaskClicked: (Task) -> Unit,onAddTask: () -> Unit) {
+fun TasksScreen(vmf: MyViewModelFactory, onTaskClicked: (Task) -> Unit) {
     val vm: TasksScreenViewModel = viewModel(factory = vmf)
     val tasks by vm.getTasks().observeAsState()
-    Column {
-        Button(
-            onClick = onAddTask
-        ) {
-            Text("ADD TASK")
-        }
-        tasks?.let {
-            TaskList(it, onTaskClicked)
-        }
+    tasks?.let {
+        TaskList(it, onTaskClicked)
     }
 }
 
