@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.runtime.getValue
@@ -16,14 +15,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//            var task by remember { mutableStateOf(Task(name = "", complete = false))}
             var tasks by remember { mutableStateOf(mutableListOf<Task>())}
             Column {
                 TaskEditor(
@@ -35,14 +31,11 @@ class MainActivity : ComponentActivity() {
                         tasks = newTasks
                     }
                 )
-                Column {
-                    for(task in tasks) {
-                        Text("name is ${task.name}")
-                    }
-                }
+                TaskList(tasks)
             }
         }
     }
+
 }
 
 data class Task(var name: String, var complete: Boolean)
