@@ -19,19 +19,23 @@ fun MainNavigation(vmf: MyViewModelFactory) {
         startDestination = "tasks"
     ) {
         composable("tasks") {
-            TasksScreen(
-                vmf = vmf,
-                onTaskClicked = {
-                    navController.navigate("tasks/${it.id}")
-                },
-                onAddTask = {
-                    navController.navigate("tasks/add")
-                }
-            )
+            MyScaffold("Tasks!") {
+                TasksScreen(
+                    vmf = vmf,
+                    onTaskClicked = {
+                        navController.navigate("tasks/${it.id}")
+                    },
+                    onAddTask = {
+                        navController.navigate("tasks/add")
+                    }
+                )
+            }
         }
         composable("tasks/add") {
-            AddTaskScreen(vmf) {
-                navController.navigate("tasks")
+            MyScaffold("Add Task") {
+                AddTaskScreen(vmf) {
+                    navController.navigate("tasks")
+                }
             }
         }
         composable(
@@ -44,8 +48,10 @@ fun MainNavigation(vmf: MyViewModelFactory) {
         ) {
             it.arguments?.let {
                 val taskId = it.get("taskId") as Long
-                EditTaskScreen(vmf, taskId = taskId) {
-                    navController.navigate("tasks")
+                MyScaffold("Edit Task") {
+                    EditTaskScreen(vmf, taskId = taskId) {
+                        navController.navigate("tasks")
+                    }
                 }
             }
         }
