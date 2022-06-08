@@ -17,6 +17,14 @@ class AddTaskScreenViewModel(val taskDao: TaskDao): ViewModel() {
     }
 }
 
+class EditTaskScreenViewModel(val taskDao: TaskDao): ViewModel() {
+    fun addTask(task: Task) {
+        viewModelScope.launch {
+            taskDao.insert(task)
+        }
+    }
+}
+
 class MyViewModelFactory(val taskDao: TaskDao): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TasksScreenViewModel::class.java)) {
