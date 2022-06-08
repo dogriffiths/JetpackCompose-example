@@ -18,11 +18,13 @@ class AddTaskScreenViewModel(val taskDao: TaskDao): ViewModel() {
 }
 
 class EditTaskScreenViewModel(val taskDao: TaskDao): ViewModel() {
-    fun addTask(task: Task) {
+    fun updateTask(task: Task) {
         viewModelScope.launch {
-            taskDao.insert(task)
+            taskDao.update(task)
         }
     }
+
+    fun getTask(taskId: Long) = taskDao.get(taskId)
 }
 
 class MyViewModelFactory(val taskDao: TaskDao): ViewModelProvider.Factory {
