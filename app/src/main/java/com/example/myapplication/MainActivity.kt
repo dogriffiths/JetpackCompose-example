@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TaskEditor()
+            TaskEditor(Task(name = "Buy milk", complete = true))
         }
     }
 }
@@ -31,9 +31,9 @@ class MainActivity : ComponentActivity() {
 data class Task(var name: String, var complete: Boolean)
 
 @Composable
-fun TaskEditor() {
-    var name by rememberSaveable { mutableStateOf("Buy milk") }
-    var complete by rememberSaveable { mutableStateOf(true) }
+fun TaskEditor(task: Task) {
+    var name by rememberSaveable { mutableStateOf(task.name) }
+    var complete by rememberSaveable { mutableStateOf(task.complete) }
     Column {
         TextField(
             modifier = Modifier.fillMaxWidth(),
