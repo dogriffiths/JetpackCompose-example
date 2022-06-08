@@ -33,9 +33,9 @@ fun TaskEditor() {
     Column {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = name.value,
+            value = name,
             onValueChange = {
-                name.value = it
+                name = it
             },
         )
         Row(
