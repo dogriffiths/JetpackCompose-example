@@ -10,11 +10,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun TaskList(tasks: List<Task>) {
-    val scrollState = rememberScrollState()
-
-    Column(
-        modifier = Modifier.verticalScroll(scrollState)
-    ) {
+    Column {
         for (task in tasks) {
             Row {
                 Text(task.name)
