@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
@@ -18,7 +20,12 @@ fun MainNavigation(vmf: MyViewModelFactory) {
         startDestination = "tasks"
     ) {
         composable("tasks") {
-            MyScaffold("Tasks!") {
+            MyScaffold("Tasks!",
+                fabIcon = Icons.Filled.Add,
+                onFabClick = {
+                    navController.navigate("tasks/add")
+                }
+            ) {
                 TasksScreen(
                     vmf = vmf,
                     onTaskClicked = {
