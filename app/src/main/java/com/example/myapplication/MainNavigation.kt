@@ -1,9 +1,8 @@
 package com.example.myapplication
 
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -61,6 +60,8 @@ fun MainNavigation(vmf: MyViewModelFactory) {
 @Composable
 fun MyScaffold(
     title: String,
+    fabIcon: ImageVector? = null,
+    onFabClick: () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     Scaffold(
@@ -68,6 +69,13 @@ fun MyScaffold(
             TopAppBar(title = {
                 Text(title)
             })
+        },
+        floatingActionButton = {
+            fabIcon?.let {
+                FloatingActionButton(onClick = onFabClick) {
+                    Icon(it, "Fab icon")
+                }
+            }
         }
     ) {
         content()
