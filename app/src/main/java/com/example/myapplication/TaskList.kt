@@ -13,12 +13,7 @@ import androidx.compose.ui.Modifier
 fun TaskList(tasks: List<Task>) {
     LazyColumn {
         items(tasks.size) {
-
-        }
-    }
-
-    Column {
-        for (task in tasks) {
+            val task = tasks[it]
             Row {
                 Text(task.name)
                 Text(if (task.complete) "  ✓" else "")
