@@ -56,7 +56,7 @@ fun TaskEditor(task: Task) {
         Button(
             onClick = {},
         ) {
-            Text("Save")
+            Text("SAVE")
         }
     }
 }
