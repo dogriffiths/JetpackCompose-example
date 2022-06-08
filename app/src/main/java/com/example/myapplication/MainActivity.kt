@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun TaskEditor() {
+fun TaskEditor(name: String, complete: Boolean) {
     var name by rememberSaveable { mutableStateOf("Buy milk") }
     var complete by rememberSaveable { mutableStateOf(true) }
     Column {
