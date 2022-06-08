@@ -16,9 +16,9 @@ class MainActivity : ComponentActivity() {
 
             NavHost(
                 navController = navController,
-                startDestination = ""
+                startDestination = "tasks"
             ) {
-                
+
             }
 
             TasksScreen(vmf)
