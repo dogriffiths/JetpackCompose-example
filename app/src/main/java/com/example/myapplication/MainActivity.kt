@@ -19,6 +19,8 @@ class TaskDao {
         newTasks.addAll(_tasks)
         _tasks = newTasks
     }
+
+    fun getAll() = _tasks
 }
 
 class MainActivity : ComponentActivity() {
