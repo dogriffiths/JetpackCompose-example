@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TaskEditor() {
-    var name = remember { mutableStateOf("Buy milk") }
+    var name by remember { mutableStateOf("Buy milk") }
     Column {
         TextField(
             modifier = Modifier.fillMaxWidth(),
