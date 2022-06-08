@@ -25,7 +25,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             TaskEditor(
                 task = Task(name = "Buy milk", complete = true),
-                onTaskChange = {}
+                onTaskChange = {
+
+                }
             )
         }
     }
