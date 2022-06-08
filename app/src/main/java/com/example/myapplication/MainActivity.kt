@@ -6,6 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.lifecycle.ViewModel
+
+class TasksScreenViewModel(val taskDao: TaskDao): ViewModel() {
+    fun addTask(task: Task) {
+        taskDao.insert(task)
+    }
+
+    fun getTasks() = taskDao.getAll()
+}
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
