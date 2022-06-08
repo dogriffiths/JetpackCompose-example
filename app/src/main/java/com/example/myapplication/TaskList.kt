@@ -10,10 +10,9 @@ fun TaskList(tasks: List<Task>) {
     Column {
         for (task in tasks) {
             Row {
-              Text(task.name)
-                
+                Text(task.name)
+                Text(if (task.complete) "  ✓" else "")
             }
-            Text("name is ${task.name}")
         }
     }
 }
