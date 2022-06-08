@@ -24,12 +24,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             var task by remember { mutableStateOf(Task(name = "", complete = false))}
-            TaskEditor(
-                task = Task(name = "", complete = false),
-                onTaskChange = {
-                    task = it
-                }
-            )
+            Column {
+                TaskEditor(
+                    task = Task(name = "", complete = false),
+                    onTaskChange = {
+                        task = it
+                    }
+                )
+                Text("name is ${task.name}")
+            }
         }
     }
 }
