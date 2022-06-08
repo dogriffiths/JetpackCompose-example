@@ -25,12 +25,13 @@ fun TasksScreen(vmf: MyViewModelFactory, onAddTask: () -> Unit) {
 }
 
 @Composable
-fun AddTaskScreen(vmf: MyViewModelFactory) {
+fun AddTaskScreen(vmf: MyViewModelFactory, onTaskSaved: () -> Unit) {
     val vm: AddTaskScreenViewModel = viewModel(factory = vmf)
     TaskEditor(
         task = Task(name = "", complete = false),
         onTaskChange = {
             vm.addTask(it)
+            onTaskSaved()
         }
     )
 }
