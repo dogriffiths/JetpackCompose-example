@@ -32,8 +32,8 @@ data class Task(var name: String, var complete: Boolean)
 
 @Composable
 fun TaskEditor(task: Task) {
-    var name by rememberSaveable { mutableStateOf(task.name) }
-    var complete by rememberSaveable { mutableStateOf(task.complete) }
+    var name by rememberSaveable(task.name) { mutableStateOf(task.name) }
+    var complete by rememberSaveable(task.complete) { mutableStateOf(task.complete) }
     Column {
         TextField(
             modifier = Modifier.fillMaxWidth(),
