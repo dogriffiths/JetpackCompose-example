@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class TasksScreenViewModel(val taskDao: TaskDao): ViewModel() {
     fun addTask(task: Task) {
@@ -30,14 +31,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val taskDao = TaskDao()
-        val vmf = MyViewModelFactory()
+        val vmf = MyViewModelFactory(taskDao)
         setContent {
-            val tasks by taskDao.getAll().observeAsState()
+            val vm: TasksScreenViewModel = viewModel(factory = vmf)
+            val tasks by vm.getTasks().observeAsState()
             Column {
                 TaskEditor(
                     task = Task(name = "", complete = false),
                     onTaskChange = {
-                        taskDao.insert(it)
+                        vm.addTask(it)
                     }
                 )
                 tasks?.let {
