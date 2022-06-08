@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -14,7 +15,9 @@ fun TaskList(tasks: List<Task>) {
     LazyColumn {
         items(tasks.size) {
             val task = tasks[it]
-            Row {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 Text(task.name)
                 Text(if (task.complete) "  ✓" else "")
             }
