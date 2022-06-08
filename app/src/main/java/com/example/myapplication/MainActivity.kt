@@ -8,10 +8,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.lifecycle.MutableLiveData
 
 data class Task(var name: String, var complete: Boolean)
 class TaskDao {
-    private var _tasks: List<Task> = mutableListOf(Task(name = "Buy milk", complete = true))
+    private var _tasks: MutableLiveData<List<Task>> = MutableLiveData(
+        mutableListOf(Task(name = "Buy milk", complete = true))
+    )
 
     fun insert(task: Task) {
         val newTasks = mutableListOf<Task>()
