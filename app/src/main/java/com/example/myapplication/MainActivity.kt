@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val taskDao = TaskDao()
+        val vmf = MyViewModelFactory()
         setContent {
             val tasks by taskDao.getAll().observeAsState()
             Column {
