@@ -35,6 +35,9 @@ class MyViewModelFactory(val taskDao: TaskDao): ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(AddTaskScreenViewModel::class.java)) {
             return AddTaskScreenViewModel(taskDao) as T
         }
+        if (modelClass.isAssignableFrom(EditTaskScreenViewModel::class.java)) {
+            return EditTaskScreenViewModel(taskDao) as T
+        }
         throw IllegalArgumentException("Cannot find a viewmodel you dope...")
     }
 }
