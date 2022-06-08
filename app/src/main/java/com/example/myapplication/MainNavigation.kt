@@ -19,7 +19,7 @@ fun MainNavigation(vmf: MyViewModelFactory) {
             TasksScreen(
                 vmf = vmf,
                 onTaskClicked = {
-
+                    navController.navigate("tasks/${it.id}")
                 },
                 onAddTask = {
                     navController.navigate("tasks/add")
