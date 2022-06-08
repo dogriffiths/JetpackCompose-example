@@ -26,5 +26,12 @@ fun MainNavigation(vmf: MyViewModelFactory) {
                 navController.navigate("tasks")
             }
         }
+        composable(
+            "tasks/{taskId}",
+        ) {
+            EditTaskScreen(vmf, taskId = 17L) {
+                navController.navigate("tasks")
+            }
+        }
     }
 }
