@@ -20,7 +20,10 @@ fun TaskList(tasks: List<Task>) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Text(task.name)
+                Text(
+                    modifier = Modifier.fillMaxWidth(0.95f),
+                    text = task.name
+                )
                 Text(if (task.complete) "  ✓" else "")
             }
         }
