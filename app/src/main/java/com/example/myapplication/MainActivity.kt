@@ -25,11 +25,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TaskEditor() {
+    var name = "Buy milk"
     Column {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = "Buy milk!!!!",
-            onValueChange = {},
+            value = name,
+            onValueChange = {
+                name = it
+            },
         )
         Row(
             verticalAlignment = Alignment.CenterVertically,
