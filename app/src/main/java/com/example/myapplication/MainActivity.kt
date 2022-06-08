@@ -25,3 +25,9 @@ class MainActivity : ComponentActivity() {
 fun TaskEditor() {
     Text("Buy milk")
 }
+
+@Preview
+@Composable
+fun PreviewTaskEditor() {
+    TaskEditor()
+}
