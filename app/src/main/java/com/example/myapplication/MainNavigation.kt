@@ -1,5 +1,8 @@
 package com.example.myapplication
 
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -46,5 +49,21 @@ fun MainNavigation(vmf: MyViewModelFactory) {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun MyScaffold(
+    title: String,
+    content: @Composable () -> Unit,
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(title = {
+                Text(title)
+            })
+        }
+    ) {
+        content()
     }
 }
