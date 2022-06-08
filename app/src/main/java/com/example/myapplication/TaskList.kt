@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 @Composable
 fun TaskList(tasks: List<Task>) {
     LazyColumn {
+        items(tasks.size) {
 
+        }
     }
 
     Column {
