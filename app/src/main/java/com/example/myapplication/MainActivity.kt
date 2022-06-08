@@ -24,10 +24,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TaskEditor() {
     Text("Buy milk!!!!")
+    Text("Complete!")
 }
 
-@Preview
-@Composable
-fun PreviewTaskEditor() {
-    TaskEditor()
-}
+//@Preview
+//@Composable
+//fun PreviewTaskEditor() {
+//    TaskEditor()
+//}
